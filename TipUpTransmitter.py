@@ -8,31 +8,27 @@ GPIO.output("XIO-P2", GPIO.HIGH)
 def on_connect(client, userdata, flags, rc):
   print("Connected with result code " + str(rc))
   client.subscribe("tipup")
+  print("Subscribed")
   
 def on_message(client, userdata, msg):
+  print ("Message Received")
   print (str(msg.payload))
-  message = msg.payload
-  print(userdata)
-  print(client)
-  print (message.length)
-
-  if (message =="b'flag'"):
-    print("passed if statement")
-    #This is where the CHIP will turn on the LED
-    # Could also just use two different messages instead of checking
-    #   the client id...
+  
+  if (msg.payload == 'flag'):
+    print("Went through 'flag' if statement")
+    print("Turning on LED")   
     GPIO.output("XIO-P2", GPIO.LOW)
 
   if (msg.payload == "off"):
+    print ("Turning off LED")
     GPIO.output("XIO-P2", GPIO.HIGH)
 
 client = paho.Client()
-client.connect("localhost", 1883)
 
 client.on_connect = on_connect
 client.on_message = on_message
 
-#client.publish("tipup", "flag")
+client.connect("172.20.0.1", 1883)
 
 client.loop_forever()
 
