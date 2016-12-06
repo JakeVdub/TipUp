@@ -10,6 +10,9 @@ client = paho.Client()
 client.connect("172.20.0.1", 1883)
 
 print ("CONNECTED")
+
+client.loop_start()
+
 while True:
   if (GPIO.input("XIO-P0") == False):
     print ("Button P0 Pressed")
