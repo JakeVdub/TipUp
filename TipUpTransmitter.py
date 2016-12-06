@@ -12,7 +12,14 @@ def on_connect(client, userdata, flags, rc):
   
 def on_message(client, userdata, msg):
   print ("Message Received")
-  print (str(msg.payload))
+  #Try this first
+  print (str(msg.payload, 'utf-8'))
+  # Else try this
+  #stringpayload = msg.payload.decode() #may need to be .decode('utf-8')
+  #print (stringpayload)
+  
+  #Else:
+  #
   
   if (msg.payload == 'flag'):
     print("Went through 'flag' if statement")
