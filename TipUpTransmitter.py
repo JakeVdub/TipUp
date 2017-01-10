@@ -1,14 +1,42 @@
 import paho.mqtt.client as paho
 import CHIP_IO.GPIO as GPIO
+import time
 
 GPIO.cleanup()
 GPIO.setup("XIO-P2", GPIO.OUT)
 GPIO.output("XIO-P2", GPIO.HIGH)
+GPIO.setup("XIO-P3", GPIO.OUT)
+GPIO.setup("XIO-P5", GPIO.OUT)
+GPIO.output("XIO-P3", GPIO.HIGH)
+GPIO.output("XIO-P5", GPIO.HIGH)
+
 
 def on_connect(client, userdata, flags, rc):
   print("Connected with result code " + str(rc))
   client.subscribe("tipup")
   print("Subscribed")
+
+def on_flag():
+ # while (client.on_message == 'True'):
+  GPIO.output("XIO-P2", GPIO.LOW)
+  GPIO.output("XIO-P5", GPIO.HIGH)
+  time.sleep(0.15)
+  GPIO.output("XIO-P5", GPIO.LOW)
+  time.sleep(0.1)
+  GPIO.output("XIO-P5", GPIO.HIGH)
+  time.sleep(0.15)
+  GPIO.output("XIO-P5", GPIO.LOW)
+  time.sleep(0.1)
+  GPIO.output("XIO-P5", GPIO.HIGH)
+  time.sleep(0.15)
+  GPIO.output("XIO-P5", GPIO.LOW)
+  time.sleep(0.1)
+  GPIO.output("XIO-P5", GPIO.HIGH)
+  time.sleep(0.15)
+  GPIO.output("XIO-P5", GPIO.LOW)
+  time.sleep(0.1)
+  GPIO.output("XIO-P5", GPIO.HIGH)
+
   
 def on_message(client, userdata, msg):
   print ("Message Received")
@@ -21,12 +49,14 @@ def on_message(client, userdata, msg):
   #Else:
   #
   
-  if (msg.payload == 'flag'):
+  if (str(msg.payload, 'utf-8') == 'flag'):
     print("Went through 'flag' if statement")
-    print("Turning on LED")   
-    GPIO.output("XIO-P2", GPIO.LOW)
+    print("Calling on_flag")   
+    on_flag()
+    
 
-  if (msg.payload == "off"):
+
+  if (str(msg.payload, 'utf-8') == 'off'):
     print ("Turning off LED")
     GPIO.output("XIO-P2", GPIO.HIGH)
 
