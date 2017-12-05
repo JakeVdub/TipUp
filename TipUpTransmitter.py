@@ -37,7 +37,6 @@ def on_flag():
   time.sleep(0.1)
   GPIO.output("XIO-P5", GPIO.HIGH)
 
-  
 def on_message(client, userdata, msg):
   print ("Message Received")
   #Try this first
@@ -45,23 +44,21 @@ def on_message(client, userdata, msg):
   # Else try this
   #stringpayload = msg.payload.decode() #may need to be .decode('utf-8')
   #print (stringpayload)
-  
+
   #Else:
   #
-  
+
   if (str(msg.payload, 'utf-8') == 'flag'):
     print("Went through 'flag' if statement")
-    print("Calling on_flag")   
+    print("Calling on_flag")
     on_flag()
-    
+
 
 
   if (str(msg.payload, 'utf-8') == 'off'):
     print ("Turning off LED")
     GPIO.output("XIO-P2", GPIO.HIGH)
-
 client = paho.Client()
-
 client.on_connect = on_connect
 client.on_message = on_message
 
@@ -70,3 +67,4 @@ client.connect("172.20.0.1", 1883)
 client.loop_forever()
 
 GPIO.cleanup()
+
