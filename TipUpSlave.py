@@ -7,7 +7,7 @@ stealthSwitch = "XIO-P2"
 flagLight = "XIO-P4"
 
 stealth = False
-flag-down = False
+flagDown = False
 
 GPIO.cleanup()
 GPIO.setup(sensor, GPIO.IN, pull_up_down=GPIO.PUD_UP)
