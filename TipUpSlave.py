@@ -22,15 +22,15 @@ def on_connect(client, userdata, flags, rc):
   while True:
     if (GPIO.input(sensor) == False):
       print ("Flag is Up")
-      flag-down = False
+      flagDown = False
       client.publish('tipup', 'flag')
       time.sleep(10)
       
     if (GPIO.input(sensor) == True):
       print ("Flag is Down")
-      if (flag-down == False):
+      if (flagDown == False):
         client.oublish('tipup', 'off')
-        flag-down = True;
+        flagDown = True;
 
     if (GPIO.input(stealthSwitch) == False):
       if (stealth == False):
