@@ -18,41 +18,27 @@ GPIO.output(flagLight, GPIO.HIGH)
 def on_connect(client, userdata, flags, rc):
   print("Connected with result code " + str(rc))
   time.sleep(1)
-  #After connection is established begin looking for flags
-  while True:
-    if (GPIO.input(sensor) == False):
-      print ("Flag is Up")
-      flagDown = False
-      client.publish('tipup', 'flag')
-      time.sleep(10)
-      
-    if (GPIO.input(sensor) == True):
-      print ("Flag is Down")
-      if (flagDown == False):
-        client.publish('tipup', 'off')
-        flagDown = True;
-        time.sleep(1)
-
-    if (GPIO.input(stealthSwitch) == False):
-      if (stealth == False):
-        print ("Silencing Beeper")
-        client.publish('tipup', 'stealth')
-        stealth = True
-        time.sleep(1)
-      
-    if (GPIO.input(stealthSwitch) == True):
-      if (stealth == True):
-        stealth = False
-      
-      
 
 client = paho.Client()
 client.on_connect = on_connect
 
 client.connect("172.20.0.1", 1883)
-time.sleep(1)
-client.loop_forever()
+time.sleep(3)
+client.loop_start()
 
+while True:
+  if (GPIO.input(sensor) == False):
+    print ("Flag is Up")
+    client.publish('tipup', 'flag')
+    time.sleep(5)
+
+  if (GPIO.input(sensor) == True):
+    print ("Flag is Down")
+    client.publish('tipup', 'off')
+    time.sleep(5)
+
+      
+client.loop_end()
 
 
 
