@@ -1,5 +1,5 @@
-import paho.mqtt.client as paho
-import CHIP_IO.GPIO as GPIO
+import paho.mqtt.client as mqtt
+import RPi.GPIO as GPIO
 import time
 
 GPIO.cleanup()
@@ -59,7 +59,7 @@ def on_message(client, userdata, msg):
     print ("Silencing Buzzer")
     GPIO.output(Buzzer, GPIO.HIGH)
            
-client = paho.Client()
+client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
