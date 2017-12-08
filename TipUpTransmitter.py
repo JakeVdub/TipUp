@@ -4,9 +4,9 @@ import time
 
 GPIO.cleanup()
 
-LED1 = "XIO-P2"
-LED2 = "XIO-P3"
-Buzzer = "XIO-P5"
+LED1 = 4
+LED2 = 3
+Buzzer = 5
 
 GPIO.setup(LED1, GPIO.OUT)
 GPIO.setup(LED2, GPIO.OUT)
