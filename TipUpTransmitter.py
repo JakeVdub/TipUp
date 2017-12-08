@@ -36,7 +36,7 @@ def on_flag():
   GPIO.output(Buzzer, GPIO.LOW)
   time.sleep(0.1)
   GPIO.output(Buzzer, GPIO.HIGH)
-  time.sleep(0.15)
+  time.sleep(0.15) 
   GPIO.output(Buzzer, GPIO.LOW)
   time.sleep(0.1)
   GPIO.output(Buzzer, GPIO.HIGH)
