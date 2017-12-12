@@ -7,7 +7,7 @@ LED1 = 17
 LED2 = 27
 Buzzer = 22
 
-GPIO.cleanup()
+
 def on_connect(client, userdata, flags, rc):
   print("Connected with result code " + str(rc))
   client.subscribe("tipup")
@@ -21,13 +21,13 @@ def on_connect(client, userdata, flags, rc):
   GPIO.setup(LED1, GPIO.OUT)
   GPIO.setup(LED2, GPIO.OUT)
   GPIO.setup(Buzzer, GPIO.OUT)
-  GPIO.output(LED1, GPIO.HIGH)
-  GPIO.output(LED2, GPIO.HIGH)
+  GPIO.output(LED1, GPIO.LOW)
+  GPIO.output(LED2, GPIO.LOW)
   GPIO.output(Buzzer, GPIO.HIGH)
 
 def on_flag():
  # while (client.on_message == 'True'):
-  GPIO.output(LED1, GPIO.LOW)
+  GPIO.output(LED1, GPIO.HIGH)
   GPIO.output(Buzzer, GPIO.LOW)
   time.sleep(0.1)
   GPIO.output(Buzzer, GPIO.HIGH)
@@ -55,7 +55,7 @@ def on_message(client, userdata, msg):
 
   if (str(msg.payload, 'utf-8') == 'off'):
     print ("Turning off LED")
-    GPIO.output(LED1, GPIO.HIGH)
+    GPIO.output(LED1, GPIO.LOW)
     GPIO.output(Buzzer, GPIO.HIGH)
     
   if (str(msg.payload, 'utf-8') == 'stealth'):
