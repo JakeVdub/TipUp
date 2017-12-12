@@ -22,7 +22,7 @@ def on_connect(client, userdata, flags, rc):
 
 def on_flag():
  # while (client.on_message == 'True'):
-  GPIO.output(LED1, GPIO.LOW)
+  GPIO.output(11, GPIO.LOW)
   GPIO.output(Buzzer, GPIO.LOW)
   time.sleep(0.1)
   GPIO.output(Buzzer, GPIO.HIGH)
