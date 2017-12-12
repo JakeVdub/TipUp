@@ -2,8 +2,6 @@ import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 import time
 
-
-
 LED1 = 4
 LED2 = 3
 Buzzer = 5
