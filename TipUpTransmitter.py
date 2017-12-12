@@ -23,11 +23,13 @@ def on_connect(client, userdata, flags, rc):
   GPIO.setup(Buzzer, GPIO.OUT)
   GPIO.output(LED1, GPIO.LOW)
   GPIO.output(LED2, GPIO.LOW)
-  GPIO.output(Buzzer, GPIO.HIGH)
+  GPIO.output(Buzzer, GPIO.LOW)
 
 def on_flag():
  # while (client.on_message == 'True'):
   GPIO.output(LED1, GPIO.HIGH)
+  GPIO.output(Buzzer, GPIO.HIGH)
+  time.sleep(0.15)
   GPIO.output(Buzzer, GPIO.LOW)
   time.sleep(0.1)
   GPIO.output(Buzzer, GPIO.HIGH)
@@ -42,7 +44,6 @@ def on_flag():
   time.sleep(0.15) 
   GPIO.output(Buzzer, GPIO.LOW)
   time.sleep(0.1)
-  GPIO.output(Buzzer, GPIO.HIGH)
 
 def on_message(client, userdata, msg):
   print ("Message Received")
