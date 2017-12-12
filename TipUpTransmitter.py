@@ -57,11 +57,11 @@ def on_message(client, userdata, msg):
   if (str(msg.payload, 'utf-8') == 'off'):
     print ("Turning off LED")
     GPIO.output(LED1, GPIO.LOW)
-    GPIO.output(Buzzer, GPIO.HIGH)
+    GPIO.output(Buzzer, GPIO.LOW)
     
   if (str(msg.payload, 'utf-8') == 'stealth'):
     print ("Silencing Buzzer")
-    GPIO.output(Buzzer, GPIO.HIGH)
+    GPIO.output(Buzzer, GPIO.LOW)
            
 client = mqtt.Client()
 client.on_connect = on_connect
