@@ -3,7 +3,9 @@ import RPi.GPIO as GPIO
 import time
 
 
-
+LED1 = 17
+LED2 = 27
+Buzzer = 22
 
 GPIO.cleanup()
 def on_connect(client, userdata, flags, rc):
