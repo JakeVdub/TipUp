@@ -2,23 +2,26 @@ import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 import time
 
-LED1 = 17
-LED2 = 27
-Buzzer = 22
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(LED1, GPIO.OUT)
-GPIO.setup(LED2, GPIO.OUT)
-GPIO.setup(Buzzer, GPIO.OUT)
-GPIO.output(LED1, GPIO.HIGH)
-GPIO.output(LED2, GPIO.HIGH)
-GPIO.output(Buzzer, GPIO.HIGH)
+
+
 
 GPIO.cleanup()
 def on_connect(client, userdata, flags, rc):
   print("Connected with result code " + str(rc))
   client.subscribe("tipup")
   print("Subscribed")
+  LED1 = 17
+  LED2 = 27
+  Buzzer = 22
+   
+  GPIO.setmode(GPIO.BCM)
+  GPIO.setwarnings(False)
+  GPIO.setup(LED1, GPIO.OUT)
+  GPIO.setup(LED2, GPIO.OUT)
+  GPIO.setup(Buzzer, GPIO.OUT)
+  GPIO.output(LED1, GPIO.HIGH)
+  GPIO.output(LED2, GPIO.HIGH)
+  GPIO.output(Buzzer, GPIO.HIGH)
 
 def on_flag():
  # while (client.on_message == 'True'):
