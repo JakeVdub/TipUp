@@ -2,15 +2,15 @@ import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 import time
 
-LED1 = 4
+LED1 = 11
 LED2 = 3
 Buzzer = 5
-GPIO.setmode(GPIO.BCM)
+
 GPIO.setwarnings(False)
 GPIO.setup(LED1, GPIO.OUT)
 GPIO.setup(LED2, GPIO.OUT)
 GPIO.setup(Buzzer, GPIO.OUT)
-
+GPIO.setmode(GPIO.BCM)
 GPIO.output(LED1, GPIO.HIGH)
 GPIO.output(LED2, GPIO.HIGH)
 GPIO.output(Buzzer, GPIO.HIGH)
