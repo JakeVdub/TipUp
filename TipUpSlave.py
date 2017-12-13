@@ -22,7 +22,7 @@ def on_connect(client, userdata, flags, rc):
 client = paho.Client()
 client.on_connect = on_connect
 
-client.connect("172.20.0.1", 1883)
+client.connect("192.168.0.1", 1883)
 time.sleep(3)
 client.loop_start()
 
