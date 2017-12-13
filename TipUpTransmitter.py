@@ -25,9 +25,13 @@ def on_connect(client, userdata, flags, rc):
   GPIO.output(LED2, GPIO.LOW)
   GPIO.output(Buzzer, GPIO.LOW)
 
-def on_flag():
+def on_flag(number):
  # while (client.on_message == 'True'):
-  GPIO.output(LED1, GPIO.HIGH)
+  if (number == 1):
+    GPIO.output(LED1, GPIO.HIGH)
+  else:
+    GPIO.output(LED2, GPIO.HIGH)
+
   GPIO.output(Buzzer, GPIO.HIGH)
   time.sleep(0.15)
   GPIO.output(Buzzer, GPIO.LOW)
@@ -52,12 +56,18 @@ def on_message(client, userdata, msg):
   if (str(msg.payload, 'utf-8') == 'flag'):
     print("Went through 'flag' if statement")
     print("Calling on_flag")
-    on_flag()
+    on_flag(1)
+
+  if (str(msg.payload, 'utf-8') == 'flag2'):
+    print("Went through 'flag' if statement")
+    print("Calling on_flag")
+    on_flag(2)
 
   if (str(msg.payload, 'utf-8') == 'off'):
     print ("Turning off LED")
     GPIO.output(LED1, GPIO.LOW)
     GPIO.output(Buzzer, GPIO.LOW)
+    GPIO.output(LED2, GPIO.LOW)
     
   if (str(msg.payload, 'utf-8') == 'stealth'):
     print ("Silencing Buzzer")
